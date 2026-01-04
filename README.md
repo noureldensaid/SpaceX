@@ -60,3 +60,14 @@ Unified error model using `NetworkError` enum
 ---
 
 👨‍🚀 *Focused, testable, and production-oriented Android implementation.*
+
+
+
+<img width="1079" height="2338" alt="image" src="https://github.com/user-attachments/assets/c545dd17-aabc-4dd8-b7b8-fdf4c7a32c5f" />
+
+<img width="1079" height="2338" alt="image" src="https://github.com/user-attachments/assets/0c51321c-3035-49dd-b9a7-74e7c455ec7e" />
+
+<img width="1079" height="2338" alt="image" src="https://github.com/user-attachments/assets/85dae66d-c2b2-4f10-8a8b-a476a577bd9e" />
+
+<img width="1079" height="2338" alt="image" src="https://github.com/user-attachments/assets/986a95e8-f046-40f7-b812-f071e7e35ca8" />
+
