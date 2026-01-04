@@ -31,9 +31,7 @@ Android application built as a home task to demonstrate **modern Android develop
 
 ## 🧪 Testing
 - Unit tests for UseCases
-- Repository interaction verification
 - Error handling & edge cases
-- Coroutine cancellation tested
 
 ---
 
