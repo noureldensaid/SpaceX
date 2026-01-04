@@ -10,8 +10,10 @@ import com.spacex.launches.launchesList.domain.useCase.GetLaunchesUseCase
 import com.spacex.launches.launchesList.presentation.model.LaunchesScreenEvents
 import com.spacex.launches.launchesList.presentation.model.LaunchesScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,6 +27,9 @@ class LaunchesListViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(LaunchesScreenState())
     val state = _state.asStateFlow()
+
+    private val _errorFlow = Channel<ResponseState.Error>()
+    val errorFlow = _errorFlow.receiveAsFlow()
 
     private val paginator = Paginator(
         initialLoadSize = 12,
@@ -50,20 +55,11 @@ class LaunchesListViewModel @Inject constructor(
                 when (result) {
                     is ResponseState.Success -> {
                         _state.update {
-                            it.copy(
-                                launches = result.data,
-                                errorMessage = null
-                            )
+                            it.copy(launches = result.data)
                         }
                     }
 
-                    is ResponseState.Error -> {
-                        _state.update {
-                            it.copy(
-                                errorMessage = result.errorBody?.message ?: "Something went wrong"
-                            )
-                        }
-                    }
+                    is ResponseState.Error -> _errorFlow.send(result)
                 }
             }
         }
@@ -81,7 +77,7 @@ class LaunchesListViewModel @Inject constructor(
 
     private fun loadInitial() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true, errorMessage = null) }
+            _state.update { it.copy(isLoading = true) }
             paginator.loadInitial(force = true)
             _state.update { it.copy(isLoading = false) }
         }
@@ -89,7 +85,7 @@ class LaunchesListViewModel @Inject constructor(
 
     private fun loadNext() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoadingMore = true, errorMessage = null) }
+            _state.update { it.copy(isLoadingMore = true) }
             paginator.loadNextPage()
             _state.update { it.copy(isLoadingMore = false) }
         }

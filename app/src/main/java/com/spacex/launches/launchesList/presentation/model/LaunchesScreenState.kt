@@ -7,7 +7,6 @@ import com.spacex.launches.launchesList.domain.model.Launch
 data class LaunchesScreenState(
     val launches: List<Launch> = emptyList(),
     val isLoading: Boolean = false,
-    val errorMessage: String? = null,
     val isLoadingMore: Boolean = false,
     val endReached: Boolean = false,
     val cursor: String? = null,

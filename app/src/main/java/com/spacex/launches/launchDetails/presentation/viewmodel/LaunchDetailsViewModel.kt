@@ -11,8 +11,10 @@ import com.spacex.launches.launchDetails.domain.useCase.GetLaunchDetailsUseCase
 import com.spacex.launches.launchDetails.presentation.model.LaunchDetailsEvents
 import com.spacex.launches.launchDetails.presentation.model.LaunchDetailsState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +27,9 @@ class LaunchDetailsViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(LaunchDetailsState())
     val state = _state.asStateFlow()
+
+    private val _errorFlow = Channel<ResponseState.Error>()
+    val errorFlow = _errorFlow.receiveAsFlow()
 
     init {
         onEvent(LaunchDetailsEvents.GetLaunchDetails)
@@ -44,7 +49,7 @@ class LaunchDetailsViewModel @Inject constructor(
             launchId?.let {
                 val response = getLaunchDetailsUseCase(it)
                 when (response) {
-                    is ResponseState.Error -> {}
+                    is ResponseState.Error -> _errorFlow.send(response)
                     is ResponseState.Success -> {
                         val launchDetails = response.data
                         _state.value = _state.value.copy(

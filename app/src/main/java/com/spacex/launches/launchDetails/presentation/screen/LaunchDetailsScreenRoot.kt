@@ -49,7 +49,7 @@ fun LaunchDetailsScreenRoot(
         modifier = modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
-                title = { Text(text = "Launche ID: #${state.launchDetails?.id}", fontSize = 24.sp) },
+                title = { Text(text = "Launch ID: #${state.launchDetails?.id}", fontSize = 24.sp) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor =  MaterialTheme.colorScheme.surface,

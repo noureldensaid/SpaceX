@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.spacex.launches.core.data.remote.ResponseState
+import com.spacex.launches.launchesList.presentation.model.LaunchesScreenEvents
 import com.spacex.launches.launchesList.presentation.viewmodel.LaunchesListViewModel
 import kotlinx.coroutines.flow.Flow
 
@@ -18,6 +19,13 @@ fun LaunchesScreen(
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    isLoading(state.isLoading)
+
+    errorFlow(viewModel.errorFlow)
+
+    onRetry { viewModel.onEvent(LaunchesScreenEvents.LoadLaunches) }
+
     LaunchesScreenRoot(
         state = state,
         modifier = modifier,

@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.spacex.launches.core.data.remote.ResponseState
+import com.spacex.launches.launchDetails.presentation.model.LaunchDetailsEvents
 import com.spacex.launches.launchDetails.presentation.viewmodel.LaunchDetailsViewModel
 import kotlinx.coroutines.flow.Flow
 
@@ -18,6 +19,10 @@ fun LaunchDetailsScreen(
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    isLoading(state.isLoading)
+    errorFlow(viewModel.errorFlow)
+    onRetry { viewModel.onEvent(LaunchDetailsEvents.GetLaunchDetails) }
 
     LaunchDetailsScreenRoot(
         modifier = modifier,
