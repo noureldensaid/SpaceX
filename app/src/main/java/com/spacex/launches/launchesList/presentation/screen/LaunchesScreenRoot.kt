@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.spacex.launches.R
+import com.spacex.launches.core.presentation.components.DefaultEmptyState
 import com.spacex.launches.core.presentation.components.PaginatedLazColumn
 import com.spacex.launches.launchesList.domain.model.Launch
 import com.spacex.launches.launchesList.presentation.components.LaunchItem
@@ -72,28 +73,35 @@ fun LaunchesScreenRoot(
         },
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { paddingValues ->
-        PaginatedLazColumn(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(top = paddingValues.calculateTopPadding()),
-            items = state.launches.toPersistentList(),
-            keySelector = { it.id },
-            listState = listState,
-            isAppending = state.isLoadingMore,
-            isEndReached = state.endReached,
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 14.dp),
-            onLoadMore = {
-                onEvent(LaunchesScreenEvents.LoadNextPage)
-            },
-            itemContent = { launch ->
-                LaunchItem(
-                    modifier = Modifier.height(100.dp),
-                    launchModel = launch
-                ) {
-                    onEvent(LaunchesScreenEvents.NavigateToDetails(launch.id))
-                }
-            },
-        )
+        when {
+            state.isLoading.not() && state.launches.isEmpty() -> {
+                DefaultEmptyState()
+            }
+            else -> {
+                PaginatedLazColumn(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(top = paddingValues.calculateTopPadding()),
+                    items = state.launches.toPersistentList(),
+                    keySelector = { it.id },
+                    listState = listState,
+                    isAppending = state.isLoadingMore,
+                    isEndReached = state.endReached,
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 14.dp),
+                    onLoadMore = {
+                        onEvent(LaunchesScreenEvents.LoadNextPage)
+                    },
+                    itemContent = { launch ->
+                        LaunchItem(
+                            modifier = Modifier.height(100.dp),
+                            launchModel = launch
+                        ) {
+                            onEvent(LaunchesScreenEvents.NavigateToDetails(launch.id))
+                        }
+                    },
+                )
+            }
+        }
     }
 }
 
