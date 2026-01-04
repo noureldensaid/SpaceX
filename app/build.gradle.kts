@@ -83,6 +83,9 @@ dependencies {
     // Coil for image loading
     implementation(libs.coil.compose)
 
+    implementation(libs.androidx.material.icons.extended)
+
+
     // chucker
     debugImplementation(libs.chucker.debug)
     releaseImplementation(libs.chucker.no.op)

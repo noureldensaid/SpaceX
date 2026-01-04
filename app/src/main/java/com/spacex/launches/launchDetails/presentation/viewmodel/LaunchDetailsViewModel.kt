@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.spacex.launches.core.data.remote.ResponseState
 import com.spacex.launches.core.navigation.LaunchDetailsScreenRoute
+import com.spacex.launches.core.navigation.Navigator
 import com.spacex.launches.launchDetails.domain.useCase.GetLaunchDetailsUseCase
 import com.spacex.launches.launchDetails.presentation.model.LaunchDetailsEvents
 import com.spacex.launches.launchDetails.presentation.model.LaunchDetailsState
@@ -17,6 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LaunchDetailsViewModel @Inject constructor(
+    private val navigator: Navigator,
     private val getLaunchDetailsUseCase: GetLaunchDetailsUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -31,6 +33,7 @@ class LaunchDetailsViewModel @Inject constructor(
     fun onEvent(event: LaunchDetailsEvents) {
         when (event) {
             LaunchDetailsEvents.GetLaunchDetails -> loadLaunchDetails()
+            LaunchDetailsEvents.NavigateBack -> navigator.popBackStack()
         }
     }
 
