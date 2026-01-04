@@ -3,6 +3,8 @@ package com.spacex.launches.launchesList.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spacex.launches.core.data.remote.ResponseState
+import com.spacex.launches.core.navigation.LaunchDetailsScreenRoute
+import com.spacex.launches.core.navigation.Navigator
 import com.spacex.launches.core.utils.Paginator
 import com.spacex.launches.launchesList.domain.useCase.GetLaunchesUseCase
 import com.spacex.launches.launchesList.presentation.model.LaunchesScreenEvents
@@ -17,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LaunchesListViewModel @Inject constructor(
+    private val navigator: Navigator,
     private val getLaunchesUseCase: GetLaunchesUseCase
 ) : ViewModel() {
 
@@ -93,6 +96,6 @@ class LaunchesListViewModel @Inject constructor(
     }
 
     private fun navigateToDetails(launchId: String) {
-        // navigation effect
+        navigator.navigate(LaunchDetailsScreenRoute(launchId))
     }
 }

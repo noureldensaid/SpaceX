@@ -27,7 +27,6 @@ import com.spacex.launches.launchesList.presentation.model.LaunchesScreenEvents
 import com.spacex.launches.launchesList.presentation.model.LaunchesScreenState
 import kotlinx.collections.immutable.toPersistentList
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LaunchesScreenRoot(
@@ -88,7 +87,9 @@ fun LaunchesScreenRoot(
                 LaunchItem(
                     modifier = Modifier.height(100.dp),
                     launchModel = launch
-                )
+                ) {
+                    onEvent(LaunchesScreenEvents.NavigateToDetails(launch.id))
+                }
             },
         )
     }

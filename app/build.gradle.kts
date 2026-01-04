@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.apollo3)
     kotlin("kapt")
+    kotlin("plugin.serialization")
 }
 
 apollo {
@@ -66,6 +67,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
 
     // Apollo GraphQL
     implementation(libs.apollo.runtime)

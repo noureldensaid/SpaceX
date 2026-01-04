@@ -26,9 +26,11 @@ import com.spacex.launches.launchesList.domain.model.Launch
 @Composable
 fun LaunchItem(
     modifier: Modifier = Modifier,
-    launchModel: Launch
+    launchModel: Launch,
+    onItemClick: (id: String) -> Unit
 ) {
     Card(
+        onClick =  { onItemClick(launchModel.id) },
         modifier = modifier,
         colors = CardDefaults.cardColors(
             containerColor = Color.White,
@@ -86,5 +88,5 @@ fun LaunchItemPreview() {
             .fillMaxWidth()
             .height(100.dp),
         launchModel = mockLaunch
-    )
+    ){}
 }
