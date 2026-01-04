@@ -4,6 +4,7 @@ query LaunchList($pageSize: Int, $after: String) {
         hasMore
         launches {
             id
+            site
             mission {
                 name
                 missionPatch(size: SMALL)

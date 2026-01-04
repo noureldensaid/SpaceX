@@ -1,6 +1,5 @@
-package com.spacex.launches.ui.theme
+package com.spacex.launches.core.presentation.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
