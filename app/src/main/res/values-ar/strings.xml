@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading">جاري التحميل…</string>
+    <string name="no_more_items_to_load">لا توجد عناصر أخرى للتحميل…</string>
+    <string name="app_name">SpaceX</string>
+    <string name="no_internet">لا يوجد اتصال بالإنترنت</string>
+    <string name="no_internet_details">يبدو أن اتصال الإنترنت في استراحة قهوة ☕️\nتحقق من الاتصال وحاول مرة أخرى.</string>
+    <string name="try_again">حاول مرة أخرى</string>
+    <string name="mission">🎯 المهمة</string>
+    <string name="name">الاسم: %1$s</string>
+    <string name="rocket">🚀 الصاروخ</string>
+    <string name="type">النوع: %1$s</string>
+    <string name="id">المعرّف: %1$s</string>
+    <string name="site">📍 الموقع</string>
+    <string name="launch_id">معرّف الإطلاق: #%1$s</string>
+    <string name="launches">الإطلاقات</string>
+    <string name="no_avaliable_data">لم يتم العثور على أي عناصر…</string>
+</resources>

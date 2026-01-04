@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SpaceX</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="no_internet_details">Looks like your internet is on a coffee break!\nCheck your connection and try again.</string>
+    <string name="try_again">Try again</string>
+    <string name="mission">🎯 Mission</string>
+    <string name="name">name: %1$s</string>
+    <string name="rocket">🚀 Rocket</string>
+    <string name="type">type: %1$s</string>
+    <string name="id">id: %1$s</string>
+    <string name="site">📍 Site</string>
+    <string name="launch_id">Launch ID: #%1$s</string>
+    <string name="launches">Launches</string>
+    <string name="loading">Loading…</string>
+    <string name="no_more_items_to_load">No more items to load…</string>
+    <string name="no_avaliable_data">No items was found…</string>
 </resources>
