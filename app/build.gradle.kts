@@ -2,6 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.apollo3)
+    kotlin("kapt")
+}
+
+apollo {
+    service("service") {
+        packageName.set("com.spacex.launches")
+    }
 }
 
 android {
@@ -56,4 +65,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Apollo GraphQL
+    implementation(libs.apollo.runtime)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Coil for image loading
+    implementation(libs.coil.compose)
+
 }
