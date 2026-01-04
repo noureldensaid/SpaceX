@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -13,7 +14,10 @@ import com.spacex.launches.core.navigation.NavigationEvent
 import com.spacex.launches.core.navigation.Navigator
 import com.spacex.launches.core.presentation.theme.SpaceXTheme
 import com.spacex.launches.core.utils.ObserveAsEvents
+import com.spacex.launches.launchDetails.presentation.screen.LaunchDetailsScreen
+import com.spacex.launches.launchDetails.presentation.viewmodel.LaunchDetailsViewModel
 import com.spacex.launches.launchesList.presentation.screen.LaunchesScreen
+import com.spacex.launches.launchesList.presentation.viewmodel.LaunchesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
@@ -59,11 +63,12 @@ class MainActivity : ComponentActivity() {
                     startDestination = LaunchesScreenRoute
                 ) {
                     composable<LaunchesScreenRoute> {
-                        LaunchesScreen()
+                        val viewmodel: LaunchesListViewModel = hiltViewModel()
+                        LaunchesScreen(viewModel = viewmodel)
                     }
-                    composable<LaunchDetailsScreenRoute> { args ->
-                        val launchId = args.id
-                        LaunchDetailsScreenRoute(launchId)
+                    composable<LaunchDetailsScreenRoute> {
+                        val viewModel: LaunchDetailsViewModel = hiltViewModel()
+                        LaunchDetailsScreen(viewModel = viewModel)
                     }
                 }
             }

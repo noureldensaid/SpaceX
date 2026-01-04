@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,10 +31,6 @@ fun LaunchItem(
     Card(
         onClick =  { onItemClick(launchModel.id) },
         modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White,
-            contentColor = Color.Black
-        )
     ) {
         Row(
             modifier = Modifier
@@ -57,9 +52,8 @@ fun LaunchItem(
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    color = Color.Black,
                     text = launchModel.rocketName,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     fontWeight = Bold
                 )
                 Text(

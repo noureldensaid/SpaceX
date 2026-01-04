@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 data object LaunchesScreenRoute
 
 @Serializable
-data class LaunchDetailsScreenRoute(val id: String)
+data class LaunchDetailsScreenRoute(val id: String? = null)
