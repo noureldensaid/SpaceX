@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.spacex.launches.R
@@ -50,7 +51,7 @@ fun LoadingFooter(
         Text(
             modifier = Modifier.padding(vertical = 20.dp, horizontal = 4.dp),
             color = Color.LightGray,
-            text = "Loading..."
+            text = stringResource(R.string.loading)
         )
     }
 }
@@ -70,7 +71,7 @@ fun EndReachedFooter(
         Text(
             modifier = Modifier.padding(20.dp),
             color = Color.LightGray,
-            text = "End of the list"
+            text = stringResource(R.string.no_more_items_to_load)
         )
     }
 }
